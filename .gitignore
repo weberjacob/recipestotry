@@ -54,6 +54,9 @@ typings/
 # dotenv environment variables file
 .env
 
+# keys
+client_secret.json
+
 # gatsby files
 .cache/
 public
@@ -65,5 +68,6 @@ public
 yarn-error.log
 .pnp/
 .pnp.js
+
 # Yarn Integrity file
 .yarn-integrity
