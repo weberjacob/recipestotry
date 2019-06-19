@@ -1,3 +1,18 @@
+require('dotenv').config({})
+
+const buildCredentials = ({ PROJECT_ID, PRIVATE_KEY, PRIVATE_KEY_ID, EMAIL, CLIENT_ID }) => ({
+  type: 'service_account',
+  project_id: PROJECT_ID,
+  private_key_id: PRIVATE_KEY_ID,
+  private_key: PRIVATE_KEY.replace(/(\\r)|(\\n)/g, '\n'),
+  client_email: `${EMAIL}`,
+  client_id: CLIENT_ID,
+  auth_uri: 'https://accounts.google.com/o/oauth2/auth',
+  token_uri: 'https://oauth2.googleapis.com/token',
+  auth_provider_x509_cert_url: 'https://www.googleapis.com/oauth2/v1/certs',
+  client_x509_cert_url: `https://www.googleapis.com/robot/v1/metadata/x509/${EMAIL}`,
+})
+
 module.exports = {
   siteMetadata: {
     title: `Recipes to try`,
@@ -32,7 +47,7 @@ module.exports = {
       options: {
         spreadsheetId: '1Osi8NzMFQDUAFr6riE7tVNFjZcRj0x8aHFFNxbEZgPU',
         worksheetTitle: 'Sheet1',
-        credentials: require('./client_secret.json')
+        credentials: buildCredentials(process.env),
       }
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
