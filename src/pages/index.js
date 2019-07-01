@@ -8,86 +8,103 @@ import SEO from "../components/seo"
 
 class IndexPage extends React.Component {
   render() {
-    const categories = get(this, 'props.data.all.distinct')
-    const breakfast = get(this, 'props.data.breakfast.edges')
-    const dessert = get(this, 'props.data.dessert.edges')
-    const main = get(this, 'props.data.main.edges')
-    const pasta = get(this, 'props.data.pasta.edges')
-    const salad = get(this, 'props.data.salad.edges')
-    const side = get(this, 'props.data.side.edges')
+    const categories = get(this, 'props.data.all.distinct');
+    const categoryItem = categories.map(( category ) =>
+      <a href={ '#' + category.toString() } key={ category.id }>{ category }</a>
+    );
+    const breakfast = get(this, 'props.data.breakfast.edges');
+    const dessert = get(this, 'props.data.dessert.edges');
+    const main = get(this, 'props.data.main.edges');
+    const pasta = get(this, 'props.data.pasta.edges');
+    const salad = get(this, 'props.data.salad.edges');
+    const side = get(this, 'props.data.side.edges');
 
     return (
       <Layout>
         <SEO title="Home" />
         <h1>Try something new</h1>
 
-        {/* { categories } */}
+        <div className="category-list">
+          { categoryItem }
+        </div>
 
-        <a name="breakfast"><h2>🍳 Breakfast 🥓</h2></a>
-        <ul className="recipe-list">
-          { breakfast.map(({ node }) => {
-            return (
-              <li key={node.id}>
-                <a href={node.url} target="_blank" rel="noopener noreferrer">{node.title}</a>
-              </li>
-            )
-          })}
-        </ul>
+        <div id="breakfast">
+          <h2>🍳 Breakfast 🥓</h2>
+          <ul className="recipe-list">
+            { breakfast.map(({ node }) => {
+              return (
+                <li key={node.id}>
+                  <a href={node.url} target="_blank" rel="noopener noreferrer">{node.title}</a>
+                </li>
+              )
+            })}
+          </ul>
+        </div>
 
-        <h2>🍨 Dessert 🍦</h2>
-        <ul className="recipe-list">
-          { dessert.map(({ node }) => {
-            return (
-              <li key={node.id}>
-                <a href={node.url} target="_blank" rel="noopener noreferrer">{node.title}</a>
-              </li>
-            )
-          })}
-        </ul>
+        <div id="dessert">
+          <h2>🍨 Dessert 🍦</h2>
+          <ul className="recipe-list">
+            { dessert.map(({ node }) => {
+              return (
+                <li key={node.id}>
+                  <a href={node.url} target="_blank" rel="noopener noreferrer">{node.title}</a>
+                </li>
+              )
+            })}
+          </ul>
+        </div>
 
-        <h2>🍗 Main Dish 🐄</h2>
-        <ul className="recipe-list">
-          { main.map(({ node }) => {
-            return (
-              <li key={node.id}>
-                <a href={node.url} target="_blank" rel="noopener noreferrer">{node.title}</a>
-              </li>
-            )
-          })}
-        </ul>
+        <div id="main">
+          <h2>🍗 Main Dish 🐄</h2>
+          <ul className="recipe-list">
+            { main.map(({ node }) => {
+              return (
+                <li key={node.id}>
+                  <a href={node.url} target="_blank" rel="noopener noreferrer">{node.title}</a>
+                </li>
+              )
+            })}
+          </ul>
+        </div>
 
-        <h2>🍝 Pasta 🍝 </h2>
-        <ul className="recipe-list">
-          { pasta.map(({ node }) => {
-            return (
-              <li key={node.id}>
-                <a href={node.url} target="_blank" rel="noopener noreferrer">{node.title}</a>
-              </li>
-            )
-          })}
-        </ul>
+        <div id="pasta">
+          <h2>🍝 Pasta 🍝 </h2>
+          <ul className="recipe-list">
+            { pasta.map(({ node }) => {
+              return (
+                <li key={node.id}>
+                  <a href={node.url} target="_blank" rel="noopener noreferrer">{node.title}</a>
+                </li>
+              )
+            })}
+          </ul>
+        </div>
         
-        <h2>🥬  Salad 🥗 </h2>
-        <ul className="recipe-list">
-          { salad.map(({ node }) => {
-            return (
-              <li key={node.id}>
-                <a href={node.url} target="_blank" rel="noopener noreferrer">{node.title}</a>
-              </li>
-            )
-          })}
-        </ul>
+        <div id="salad">
+          <h2>🥬  Salad 🥗 </h2>
+          <ul className="recipe-list">
+            { salad.map(({ node }) => {
+              return (
+                <li key={node.id}>
+                  <a href={node.url} target="_blank" rel="noopener noreferrer">{node.title}</a>
+                </li>
+              )
+            })}
+          </ul>
+        </div>
 
-        <h2>🌽Side 🍟</h2>
-        <ul className="recipe-list">
-          { side.map(({ node }) => {
-            return (
-              <li key={node.id}>
-                <a href={node.url} target="_blank" rel="noopener noreferrer">{node.title}</a>
-              </li>
-            )
-          })}
-        </ul>
+        <div id="side">
+          <h2>🌽Side 🍟</h2>
+          <ul className="recipe-list">
+            { side.map(({ node }) => {
+              return (
+                <li key={node.id}>
+                  <a href={node.url} target="_blank" rel="noopener noreferrer">{node.title}</a>
+                </li>
+              )
+            })}
+          </ul>
+        </div>
       </Layout>
     )
   }
@@ -108,7 +125,7 @@ export const recipeQuery = graphql`
       }
       distinct(field: category)
     },
-    breakfast: allGoogleSheetSheet1Row(sort: {fields: [title]}, filter: {category: {eq: "breakfast"}}) {
+    breakfast: allGoogleSheetSheet1Row(sort: {fields: [title]}, filter: {category: {eq: "Breakfast"}}) {
       edges {
         node {
           id
@@ -118,7 +135,7 @@ export const recipeQuery = graphql`
         }
       }
     },
-    dessert: allGoogleSheetSheet1Row(sort: {fields: [title]}, filter: {category: {eq: "dessert"}}) {
+    dessert: allGoogleSheetSheet1Row(sort: {fields: [title]}, filter: {category: {eq: "Dessert"}}) {
       edges {
         node {
           id
@@ -128,7 +145,7 @@ export const recipeQuery = graphql`
         }
       }
     },
-    main: allGoogleSheetSheet1Row(sort: {fields: [title]}, filter: {category: {eq: "main"}}) {
+    main: allGoogleSheetSheet1Row(sort: {fields: [title]}, filter: {category: {eq: "Main"}}) {
       edges {
         node {
           id
@@ -138,7 +155,7 @@ export const recipeQuery = graphql`
         }
       }
     },
-    pasta: allGoogleSheetSheet1Row(sort: {fields: [title]}, filter: {category: {eq: "pasta"}}) {
+    pasta: allGoogleSheetSheet1Row(sort: {fields: [title]}, filter: {category: {eq: "Pasta"}}) {
       edges {
         node {
           id
@@ -148,7 +165,7 @@ export const recipeQuery = graphql`
         }
       }
     },
-    salad: allGoogleSheetSheet1Row(sort: {fields: [title]}, filter: {category: {eq: "salad"}}) {
+    salad: allGoogleSheetSheet1Row(sort: {fields: [title]}, filter: {category: {eq: "Salad"}}) {
       edges {
         node {
           id
@@ -158,7 +175,7 @@ export const recipeQuery = graphql`
         }
       }
     },
-    side: allGoogleSheetSheet1Row(sort: {fields: [title]}, filter: {category: {eq: "side"}}) {
+    side: allGoogleSheetSheet1Row(sort: {fields: [title]}, filter: {category: {eq: "Side"}}) {
       edges {
         node {
           id

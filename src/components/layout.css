@@ -620,3 +620,13 @@ pre tt:after {
     font-size: 100%;
   }
 }
+
+/* NEW */
+.category-list{ 
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+.category-list a {
+  margin-right: 1rem;
+}
