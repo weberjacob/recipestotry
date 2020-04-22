@@ -10,7 +10,7 @@ class IndexPage extends React.Component {
   render() {
     const categories = get(this, 'props.data.all.distinct');
     const categoryItem = categories.map(( category ) =>
-      <a href={ '#' + category.toString() } key={ category.id }>{ category }</a>
+      <a href={ '#' + category.toString() } key={ category.toString() }>{ category }</a>
     );
     const breakfast = get(this, 'props.data.breakfast.edges');
     const dessert = get(this, 'props.data.dessert.edges');
@@ -28,7 +28,7 @@ class IndexPage extends React.Component {
           { categoryItem }
         </div>
 
-        <div id="breakfast">
+        <div id="Breakfast">
           <h2>🍳 Breakfast 🥓</h2>
           <ul className="recipe-list">
             { breakfast.map(({ node }) => {
@@ -41,7 +41,7 @@ class IndexPage extends React.Component {
           </ul>
         </div>
 
-        <div id="dessert">
+        <div id="Dessert">
           <h2>🍨 Dessert 🍦</h2>
           <ul className="recipe-list">
             { dessert.map(({ node }) => {
@@ -54,7 +54,7 @@ class IndexPage extends React.Component {
           </ul>
         </div>
 
-        <div id="main">
+        <div id="Main">
           <h2>🍗 Main Dish 🐄</h2>
           <ul className="recipe-list">
             { main.map(({ node }) => {
@@ -67,7 +67,7 @@ class IndexPage extends React.Component {
           </ul>
         </div>
 
-        <div id="pasta">
+        <div id="Pasta">
           <h2>🍝 Pasta 🍝 </h2>
           <ul className="recipe-list">
             { pasta.map(({ node }) => {
@@ -80,7 +80,7 @@ class IndexPage extends React.Component {
           </ul>
         </div>
         
-        <div id="salad">
+        <div id="Salad">
           <h2>🥬  Salad 🥗 </h2>
           <ul className="recipe-list">
             { salad.map(({ node }) => {
@@ -93,7 +93,7 @@ class IndexPage extends React.Component {
           </ul>
         </div>
 
-        <div id="side">
+        <div id="Side">
           <h2>🌽Side 🍟</h2>
           <ul className="recipe-list">
             { side.map(({ node }) => {
